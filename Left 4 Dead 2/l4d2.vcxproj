@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{AF041675-F00D-4A72-B40F-78D0C4BB72D9}</ProjectGuid>
+    <RootNamespace>Left 4 Dead 2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>Left 4 Dead 2</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)libraries;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)x86_debug\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)out_debug\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)libraries;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)x86\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)out\$(ProjectName)\$(Configuration)\</IntDir>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)libraries;$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>$(DXSDK_DIR)Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)libraries;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;/std:c++latest;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;/std:c++latest;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>MinSpace</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <StackReserveSize>
+      </StackReserveSize>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>MinSpace</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="l4d2\bonus_features\esp\esp.cpp" />
+    <ClCompile Include="l4d2\bonus_features\knifebot\knifebot.cpp" />
+    <ClCompile Include="l4d2\bonus_features\miscellaneous\miscellaneous.cpp" />
+    <ClCompile Include="l4d2\bonus_features\speedhack\speedhack.cpp" />
+    <ClCompile Include="l4d2\bonus_features\triggerbot\triggerbot.cpp" />
+    <ClCompile Include="l4d2\bonus_features\visuals\visuals.cpp" />
+    <ClCompile Include="l4d2\sdk\engine\c_model_info.cpp" />
+    <ClCompile Include="l4d2\sdk\world\c_trace_ray.cpp" />
+    <ClCompile Include="l4d2\ui\ui.cpp" />
+    <ClCompile Include="libraries\imgui\imgui.cpp" />
+    <ClCompile Include="libraries\imgui\imgui_demo.cpp" />
+    <ClCompile Include="libraries\imgui\imgui_draw.cpp" />
+    <ClCompile Include="libraries\imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="libraries\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="libraries\imgui\imgui_tables.cpp" />
+    <ClCompile Include="libraries\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="libraries\json\json_reader.cpp" />
+    <ClCompile Include="libraries\json\json_value.cpp" />
+    <ClCompile Include="libraries\json\json_writer.cpp" />
+    <ClCompile Include="libraries\xtea\xtea.cpp" />
+    <ClCompile Include="l4d2\config\config.cpp" />
+    <ClCompile Include="l4d2\game_utilities\game_utilities.cpp" />
+    <ClCompile Include="l4d2\globals\globals.cpp" />
+    <ClCompile Include="l4d2\hooks\hooks.cpp" />
+    <ClCompile Include="l4d2\input_manager\input_manager.cpp" />
+    <ClCompile Include="l4d2\l4d2.cpp" />
+    <ClCompile Include="l4d2\math\math.cpp" />
+    <ClCompile Include="l4d2\modules\modules.cpp" />
+    <ClCompile Include="l4d2\netvar_manager\netvar_manager.cpp" />
+    <ClCompile Include="l4d2\pattern_list\pattern_list.cpp" />
+    <ClCompile Include="l4d2\render_manager\render_manager.cpp" />
+    <ClCompile Include="l4d2\sdk\client\c_base_client.cpp" />
+    <ClCompile Include="l4d2\sdk\client\c_collideable.cpp" />
+    <ClCompile Include="l4d2\sdk\engine\c_achievement_mgr.cpp" />
+    <ClCompile Include="l4d2\sdk\engine\c_engine_vgui.cpp" />
+    <ClCompile Include="l4d2\sdk\engine\iachievement.cpp" />
+    <ClCompile Include="l4d2\sdk\entity\c_base_entity.cpp" />
+    <ClCompile Include="l4d2\sdk\entity\c_base_player.cpp" />
+    <ClCompile Include="l4d2\sdk\entity\c_base_weapon.cpp" />
+    <ClCompile Include="l4d2\sdk\entity\c_entity_list.cpp" />
+    <ClCompile Include="l4d2\sdk\engine\c_input_system.cpp" />
+    <ClCompile Include="l4d2\sdk\utils\color.cpp" />
+    <ClCompile Include="l4d2\sdk\world\c_debug_overlay.cpp" />
+    <ClCompile Include="l4d2\sdk\engine\c_engine_client.cpp" />
+    <ClCompile Include="l4d2\sdk\vgui\c_panel.cpp" />
+    <ClCompile Include="l4d2\sdk\client\c_player_info_manager.cpp" />
+    <ClCompile Include="l4d2\sdk\vgui\surface\c_surface_mgr.cpp" />
+    <ClCompile Include="l4d2\sdk\vec\vec3.cpp" />
+    <ClCompile Include="l4d2\sdk\world\c_view_matrix.cpp" />
+    <ClCompile Include="libraries\minhook\buffer.c" />
+    <ClCompile Include="libraries\minhook\hde\hde32.c" />
+    <ClCompile Include="libraries\minhook\hde\hde64.c" />
+    <ClCompile Include="libraries\minhook\hook.c" />
+    <ClCompile Include="libraries\minhook\trampoline.c" />
+    <ClCompile Include="utils\console.cpp" />
+    <ClCompile Include="utils\filesystem.cpp" />
+    <ClCompile Include="utils\utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="l4d2\bonus_features\esp\esp.h" />
+    <ClInclude Include="l4d2\bonus_features\knifebot\knifebot.h" />
+    <ClInclude Include="l4d2\bonus_features\miscellaneous\miscellaneous.h" />
+    <ClInclude Include="l4d2\bonus_features\speedhack\speedhack.h" />
+    <ClInclude Include="l4d2\bonus_features\triggerbot\triggerbot.h" />
+    <ClInclude Include="l4d2\bonus_features\visuals\visuals.h" />
+    <ClInclude Include="l4d2\sdk\engine\c_model_info.h" />
+    <ClInclude Include="l4d2\ui\ui.h" />
+    <ClInclude Include="libraries\imgui\imconfig.h" />
+    <ClInclude Include="libraries\imgui\imgui.h" />
+    <ClInclude Include="libraries\imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="libraries\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="libraries\imgui\imgui_internal.h" />
+    <ClInclude Include="libraries\imgui\imstb_rectpack.h" />
+    <ClInclude Include="libraries\imgui\imstb_textedit.h" />
+    <ClInclude Include="libraries\imgui\imstb_truetype.h" />
+    <ClInclude Include="libraries\json\allocator.h" />
+    <ClInclude Include="libraries\json\assertions.h" />
+    <ClInclude Include="libraries\json\config.h" />
+    <ClInclude Include="libraries\json\forwards.h" />
+    <ClInclude Include="libraries\json\json.h" />
+    <ClInclude Include="libraries\json\json_features.h" />
+    <ClInclude Include="libraries\json\json_tool.h" />
+    <ClInclude Include="libraries\json\reader.h" />
+    <ClInclude Include="libraries\json\value.h" />
+    <ClInclude Include="libraries\json\version.h" />
+    <ClInclude Include="libraries\json\writer.h" />
+    <ClInclude Include="libraries\xtea\xtea.h" />
+    <ClInclude Include="l4d2\config\config.h" />
+    <ClInclude Include="l4d2\game_utilities\game_utilities.h" />
+    <ClInclude Include="l4d2\globals\globals.h" />
+    <ClInclude Include="l4d2\hooks\hooks.h" />
+    <ClInclude Include="l4d2\input_manager\input_manager.h" />
+    <ClInclude Include="l4d2\l4d2.h" />
+    <ClInclude Include="l4d2\math\math.h" />
+    <ClInclude Include="l4d2\modules\modules.h" />
+    <ClInclude Include="l4d2\netvar_manager\netvar_manager.h" />
+    <ClInclude Include="l4d2\pattern_list\pattern_list.h" />
+    <ClInclude Include="l4d2\render_manager\render_manager.h" />
+    <ClInclude Include="l4d2\sdk\client\c_base_client.h" />
+    <ClInclude Include="l4d2\sdk\client\c_collideable.h" />
+    <ClInclude Include="l4d2\sdk\engine\c_achievement_mgr.h" />
+    <ClInclude Include="l4d2\sdk\engine\c_engine_vgui.h" />
+    <ClInclude Include="l4d2\sdk\engine\iachievement.h" />
+    <ClInclude Include="l4d2\sdk\entity\c_base_entity.h" />
+    <ClInclude Include="l4d2\sdk\entity\c_entity_list.h" />
+    <ClInclude Include="l4d2\sdk\engine\c_input_system.h" />
+    <ClInclude Include="l4d2\sdk\sdk.h" />
+    <ClInclude Include="l4d2\sdk\utils\color.h" />
+    <ClInclude Include="l4d2\sdk\world\c_debug_overlay.h" />
+    <ClInclude Include="l4d2\sdk\client\c_globals_vars_base.h" />
+    <ClInclude Include="l4d2\sdk\engine\c_engine_client.h" />
+    <ClInclude Include="l4d2\sdk\world\c_matrix.h" />
+    <ClInclude Include="l4d2\sdk\vgui\c_panel.h" />
+    <ClInclude Include="l4d2\sdk\client\c_player_info_manager.h" />
+    <ClInclude Include="l4d2\sdk\vgui\surface\c_surface_mgr.h" />
+    <ClInclude Include="l4d2\sdk\world\c_trace_ray.h" />
+    <ClInclude Include="l4d2\sdk\movement\c_user_cmd.h" />
+    <ClInclude Include="l4d2\sdk\vec\vec.h" />
+    <ClInclude Include="l4d2\sdk\vec\vec3.h" />
+    <ClInclude Include="l4d2\sdk\world\c_view_matrix.h" />
+    <ClInclude Include="libraries\fnv.h" />
+    <ClInclude Include="libraries\minhook\buffer.h" />
+    <ClInclude Include="libraries\minhook\hde\hde32.h" />
+    <ClInclude Include="libraries\minhook\hde\hde64.h" />
+    <ClInclude Include="libraries\minhook\hde\pstdint.h" />
+    <ClInclude Include="libraries\minhook\hde\table32.h" />
+    <ClInclude Include="libraries\minhook\hde\table64.h" />
+    <ClInclude Include="libraries\minhook\minhook.h" />
+    <ClInclude Include="libraries\minhook\trampoline.h" />
+    <ClInclude Include="libraries\steamworks\isteamclient.h" />
+    <ClInclude Include="libraries\steamworks\isteamfriends.h" />
+    <ClInclude Include="libraries\steamworks\isteamgamecoordinator.h" />
+    <ClInclude Include="libraries\steamworks\isteaminventory.h" />
+    <ClInclude Include="libraries\steamworks\isteamuser.h" />
+    <ClInclude Include="libraries\steamworks\isteamutils.h" />
+    <ClInclude Include="libraries\steamworks\steamclientpublic.h" />
+    <ClInclude Include="libraries\steamworks\steamtypes.h" />
+    <ClInclude Include="libraries\steamworks\steamuniverse.h" />
+    <ClInclude Include="libraries\steamworks\steamworks.h" />
+    <ClInclude Include="libraries\xorstr.h" />
+    <ClInclude Include="std.h" />
+    <ClInclude Include="utils\utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libraries\json\json_valueiterator.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

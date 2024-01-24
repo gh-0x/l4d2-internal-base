@@ -1,0 +1,21 @@
+#pragma once
+
+#include "client/c_base_client.h"
+#include "client/c_player_info_manager.h"
+#include "engine/c_engine_client.h"
+#include "engine/c_engine_vgui.h"
+#include "engine/c_achievement_mgr.h"
+#include "engine/c_model_info.h"
+#include "engine/c_input_system.h"
+#include "entity/c_base_entity.h"
+#include "entity/c_entity_list.h"
+#include "movement/c_user_cmd.h"
+#include "vec/vec.h"
+#include "vgui/c_panel.h"
+#include "vgui/surface/c_surface_mgr.h"
+#include "world/c_debug_overlay.h"
+#include "world/c_matrix.h"
+#include "world/c_view_matrix.h"
+#include "world/c_trace_ray.h"
+
+#include "utils/color.h"
