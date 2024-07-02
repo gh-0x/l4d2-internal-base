@@ -76,7 +76,7 @@ namespace X
 #define xorstr_( s ) ( X::xor_str_init_t< sizeof( s ) - 1, __COUNTER__ >( s, std::make_index_sequence< sizeof( s ) - 1>() ).decrypt() )
 
 #ifdef _DEBUG
-#define X_( s ) xorstr_( s )
-#else
 #define X_( s ) ( s )
+#else
+#define X_( s ) xorstr_( s )
 #endif
