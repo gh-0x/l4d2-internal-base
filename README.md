@@ -1,5 +1,5 @@
 # l4d2-internal-base
-![ui](https://github.com/mlj2/l4d2-internal-base/blob/master/media/ui.png)
+![ui](https://github.com/xastrix/l4d2-internal-base/blob/master/media/ui.png)
 ## Technical features
 - simple config system with XTEA encrypting
 - 13 & more game interfaces
