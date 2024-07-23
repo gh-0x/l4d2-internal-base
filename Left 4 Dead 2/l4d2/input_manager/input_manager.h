@@ -2,8 +2,6 @@
 
 #include "../../std.h"
 
-// https://github.com/anarh1st47/iregretnothing < 3
-
 enum class m_state
 {
 	none = 1,
