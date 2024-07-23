@@ -203,8 +203,8 @@ void ui::undo()
 
 void ui::toggle()
 {
-	g_ui.m_opened = !g_ui.m_opened;
-	g_l4d2.m_surface->set_cursor_always_visible(g_ui.m_opened);
+	m_opened = !m_opened;
+	g_l4d2.m_surface->set_cursor_always_visible(m_opened);
 }
 
 bool ImGui::ButtonWithCustomID(const char* label, const char* label_id)
