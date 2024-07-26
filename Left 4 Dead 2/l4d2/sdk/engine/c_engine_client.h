@@ -20,6 +20,7 @@ public:
 	void get_screen_size(int& width, int& height);
 	bool is_in_game();
 	bool is_connected();
+	bool is_playing();
 	int get_local_player();
 	int get_player_for_user_id(int user_id);
 	int get_max_clients();

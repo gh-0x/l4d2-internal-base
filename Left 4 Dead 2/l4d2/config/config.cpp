@@ -19,9 +19,9 @@ void config::initialize()
 		std::filesystem::create_directory(m_cfg_directory.c_str());
 }
 
-void config::load_cfg(std::string file)
+void config::load_cfg(const std::string& path)
 {
-	std::string m_file_directory = m_cfg_directory + X_("\\") + file;
+	std::string m_file_directory = m_cfg_directory + X_("\\") + path;
 	std::ifstream target(m_file_directory);
 
 	if (!target.is_open())
@@ -81,9 +81,9 @@ void config::load_cfg(std::string file)
 	g_xtea.enc(m_file_directory);
 }
 
-void config::save_cfg(std::string file)
+void config::save_cfg(const std::string& path)
 {
-	std::string m_file_directory = m_cfg_directory + X_("\\") + file;
+	std::string m_file_directory = m_cfg_directory + X_("\\") + path;
 	std::ofstream target(m_file_directory);
 
 	if (!target.is_open())

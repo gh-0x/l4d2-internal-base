@@ -6,8 +6,8 @@ struct config {
 public:
 	void initialize();
 public:
-	void load_cfg(std::string file);
-	void save_cfg(std::string file);
+	void load_cfg(const std::string& path);
+	void save_cfg(const std::string& path);
 private:
 	std::string m_cfg_directory;
 };

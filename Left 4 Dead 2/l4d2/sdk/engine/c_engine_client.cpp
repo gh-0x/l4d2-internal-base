@@ -17,6 +17,11 @@ bool engine_client::is_connected()
 	return (*(original_fn * *)this)[27](this);
 }
 
+bool engine_client::is_playing()
+{
+	return is_connected() && is_in_game();
+}
+
 int engine_client::get_local_player()
 {
 	using original_fn = int(__thiscall*)(engine_client*);

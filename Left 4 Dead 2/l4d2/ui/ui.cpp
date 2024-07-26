@@ -1,5 +1,4 @@
 #include "ui.h"
-#include "xorstr.h"
 
 #include "../config/config.h"
 #include "../globals/globals.h"

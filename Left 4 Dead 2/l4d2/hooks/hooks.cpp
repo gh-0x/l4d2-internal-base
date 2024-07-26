@@ -86,7 +86,7 @@ bool __stdcall create_move_h(float input_sample_frametime, c_user_cmd* cmd)
 	DWORD _ebp;
 	__asm mov _ebp, ebp;
 
-	g.m_send_packet = reinterpret_cast<bool*>(*reinterpret_cast<byte**>(_ebp) - 29);
+	g.m_send_packet = reinterpret_cast<bool*>(*reinterpret_cast<byte**>(_ebp) - 0x1D);
 
 	g_misc.run(cmd);
 	g_triggerbot.run(cmd);
@@ -95,6 +95,8 @@ bool __stdcall create_move_h(float input_sample_frametime, c_user_cmd* cmd)
 	g_speed_hack.run(cmd, m_speed);
 
 	auto do_autopistol = [&](void) {
+		if (!g_l4d2.m_engine->is_playing()) return;
+		if (!g.get_local()) return;
 		static bool shoot {};
 		if (cmd->buttons & in_attack) {
 			if (shoot) cmd->buttons &= ~in_attack;
@@ -110,23 +112,20 @@ bool __stdcall create_move_h(float input_sample_frametime, c_user_cmd* cmd)
 
 static DWORD WINAPI get_tick_count_h()
 {
-	static DWORD lastRealTick = 0;
-	static DWORD lastFakeTick = 0;
+	static DWORD last_real_tick = 0;
+	static DWORD last_fake_tick = 0;
 
-	// Call the original GetTickCount function using the trampoline
-	DWORD currentTick = get_tick_count_original();
+	DWORD current_tick = get_tick_count_original();
 
 	DWORD result;
-	if (lastRealTick == 0) {
-		// Initialize the last real and fake ticks
-		lastRealTick = lastFakeTick = currentTick;
-		result = currentTick;
+	if (last_real_tick == 0) {
+		last_real_tick = last_fake_tick = current_tick;
+		result = current_tick;
 	}
 	else {
-		// Calculate the fake tick count based on the speed modifier
-		result = lastFakeTick + static_cast<DWORD>(m_speed * (currentTick - lastRealTick));
-		lastFakeTick = result;
-		lastRealTick = currentTick;
+		result = last_fake_tick + static_cast<DWORD>(m_speed * (current_tick - last_real_tick));
+		last_fake_tick = result;
+		last_real_tick = current_tick;
 	}
 
 	return result;
@@ -134,23 +133,20 @@ static DWORD WINAPI get_tick_count_h()
 
 static ULONGLONG WINAPI get_tick_count64_h()
 {
-	static ULONGLONG lastRealTick = 0;
-	static ULONGLONG lastFakeTick = 0;
+	static DWORD last_real_tick = 0;
+	static DWORD last_fake_tick = 0;
 
-	// Call the original GetTickCount64 function using the trampoline
-	ULONGLONG currentTick = get_tick_count64_original();
+	DWORD current_tick = get_tick_count64_original();
 
-	ULONGLONG result;
-	if (lastRealTick == 0) {
-		// Initialize the last real and fake ticks
-		lastRealTick = lastFakeTick = currentTick;
-		result = currentTick;
+	DWORD result;
+	if (last_real_tick == 0) {
+		last_real_tick = last_fake_tick = current_tick;
+		result = current_tick;
 	}
 	else {
-		// Calculate the fake tick count based on the speed modifier
-		result = lastFakeTick + static_cast<ULONGLONG>(m_speed * (currentTick - lastRealTick));
-		lastFakeTick = result;
-		lastRealTick = currentTick;
+		result = last_fake_tick + static_cast<ULONGLONG>(m_speed * (current_tick - last_real_tick));
+		last_fake_tick = result;
+		last_real_tick = current_tick;
 	}
 
 	return result;
@@ -158,23 +154,20 @@ static ULONGLONG WINAPI get_tick_count64_h()
 
 static DWORD WINAPI time_get_time_h()
 {
-	static ULONGLONG lastRealTick = 0;
-	static ULONGLONG lastFakeTick = 0;
+	static DWORD last_real_tick = 0;
+	static DWORD last_fake_tick = 0;
 
-	// Call the original GetTickCount64 function using the trampoline
-	ULONGLONG currentTick = time_get_time_original();
+	DWORD current_tick = time_get_time_original();
 
-	ULONGLONG result;
-	if (lastRealTick == 0) {
-		// Initialize the last real and fake ticks
-		lastRealTick = lastFakeTick = currentTick;
-		result = currentTick;
+	DWORD result;
+	if (last_real_tick == 0) {
+		last_real_tick = last_fake_tick = current_tick;
+		result = current_tick;
 	}
 	else {
-		// Calculate the fake tick count based on the speed modifier
-		result = lastFakeTick + static_cast<ULONGLONG>(m_speed * (currentTick - lastRealTick));
-		lastFakeTick = result;
-		lastRealTick = currentTick;
+		result = last_fake_tick + static_cast<ULONGLONG>(m_speed * (current_tick - last_real_tick));
+		last_fake_tick = result;
+		last_real_tick = current_tick;
 	}
 
 	return result;
@@ -182,21 +175,21 @@ static DWORD WINAPI time_get_time_h()
 
 static BOOL WINAPI query_performance_counter_h(LARGE_INTEGER* lpPerformanceCount)
 {
-	static LARGE_INTEGER iLastFakeTick = { 0 };
-	static LARGE_INTEGER iLastRealTick = { 0 };
+	static LARGE_INTEGER last_fake_tick = { 0 };
+	static LARGE_INTEGER last_real_tick = { 0 };
 
 	if (!query_performance_counter_original(lpPerformanceCount))
 		return FALSE;
 
-	LARGE_INTEGER currentTick = *lpPerformanceCount;
+	LARGE_INTEGER current_tick = *lpPerformanceCount;
 
-	if (iLastRealTick.QuadPart == 0) {
-		iLastFakeTick = iLastRealTick = currentTick;
+	if (last_real_tick.QuadPart == 0) {
+		last_fake_tick = last_real_tick = current_tick;
 	}
 	else {
-		lpPerformanceCount->QuadPart = iLastFakeTick.QuadPart + static_cast<LONGLONG>(m_speed * (currentTick.QuadPart - iLastRealTick.QuadPart));
-		iLastFakeTick = *lpPerformanceCount;
-		iLastRealTick = currentTick;
+		lpPerformanceCount->QuadPart = last_fake_tick.QuadPart + static_cast<LONGLONG>(m_speed * (current_tick.QuadPart - last_real_tick.QuadPart));
+		last_fake_tick = *lpPerformanceCount;
+		last_real_tick = current_tick;
 	}
 
 	return TRUE;
