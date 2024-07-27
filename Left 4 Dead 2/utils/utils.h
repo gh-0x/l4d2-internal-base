@@ -2,27 +2,31 @@
 
 #include "../std.h"
 
-enum M_DIR {
-	DIR_FOUNDED = 3,
-	FILE_FOUNDED = 2,
-	FAIL = 0
+enum _obj_exists {
+	is_failed = 0,
+	is_binary = 1,
+	is_directory = 2,
+};
+
+struct obj {
+	_obj_exists _id;
+	bool as(_obj_exists id) {
+		return _id == id;
+	}
 };
 
 struct utils {
 public:
-	bool is_module_exists(const char* mod);
-	DWORD_PTR get_module_base_address(const char* name);
-	
-	int float_to_rgb(float var);
+	int float_to_rgb(const float var);
 	int get_time_since_epoch();
-	void set_sleeping(int mills);
+	void set_sleeping(const int mills);
 
 	std::string get_current_time();
 
 	struct filesystem {
 	public:
 		std::string get_module_directory();
-		M_DIR dir_exists(const char* path);
+		obj object_exists(const char* path);
 	};
 
 	struct console {

@@ -122,7 +122,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_HAS_STD_BYTE=0;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -168,6 +168,7 @@
     <ClCompile Include="l4d2\sdk\engine\c_model_info.cpp" />
     <ClCompile Include="l4d2\sdk\world\c_trace_ray.cpp" />
     <ClCompile Include="l4d2\ui\ui.cpp" />
+    <ClCompile Include="l4d2\ui\ui_tricks.cpp" />
     <ClCompile Include="libraries\imgui\imgui.cpp" />
     <ClCompile Include="libraries\imgui\imgui_demo.cpp" />
     <ClCompile Include="libraries\imgui\imgui_draw.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="l4d2\bonus_features\visuals\visuals.h" />
     <ClInclude Include="l4d2\sdk\engine\c_model_info.h" />
     <ClInclude Include="l4d2\ui\ui.h" />
+    <ClInclude Include="l4d2\ui\ui_tricks.h" />
     <ClInclude Include="libraries\imgui\imconfig.h" />
     <ClInclude Include="libraries\imgui\imgui.h" />
     <ClInclude Include="libraries\imgui\imgui_impl_dx9.h" />

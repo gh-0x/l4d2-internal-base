@@ -200,6 +200,10 @@ void hooks::initialize()
 	if (MH_Initialize() != MH_OK)
 		return;
 
+	auto get_virtual = [](void* _class, unsigned int index) {
+		return static_cast<unsigned int>((*static_cast<int**>(_class))[index]);
+	};
+
 	MH_CreateHook(REINTERPRET_P(get_virtual(g_l4d2.m_client_mode, 27)), create_move_h, REINTERPRET_PP(&create_move_original));
 	MH_CreateHook(REINTERPRET_P(get_virtual(g_l4d2.m_device, 17)), present_h, REINTERPRET_PP(&present_original));
 	MH_CreateHook(REINTERPRET_P(get_virtual(g_l4d2.m_device, 16)), reset_h, REINTERPRET_PP(&reset_original));

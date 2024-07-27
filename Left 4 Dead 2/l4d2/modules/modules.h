@@ -3,8 +3,6 @@
 #include "../../std.h"
 
 #include "steamworks/steamworks.h"
-#include "d3dx9.h"
-
 #include "../sdk/sdk.h"
 
 struct l4d2 {
@@ -16,7 +14,6 @@ private:
 	m_interface* get_interface(const std::string& module_name, const std::string& interface_name);
 	template <typename m_steam_interface>
 	m_steam_interface get_steam_interface(const std::string& interface_name);
-	DWORD_PTR get_module_base_address();
 public:
 	engine_client* m_engine;
 	entity_list* m_entity_list;

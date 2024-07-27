@@ -36,9 +36,9 @@ static void decipher(unsigned int num_rounds, uint32_t v[2], uint32_t const key[
 	v[0] = v0; v[1] = v1;
 }
 
-void xtea::enc(std::string file_path)
+void xtea::encode(const std::string& path)
 {
-	std::fstream file(file_path.c_str(), std::ios::in | std::ios::out | std::ios::binary);
+	std::fstream file(path, std::ios::in | std::ios::out | std::ios::binary);
 
 	file.seekg(0, std::ios::end);
 
@@ -72,9 +72,9 @@ void xtea::enc(std::string file_path)
 	file.close();
 }
 
-void xtea::dec(std::string file_path)
+void xtea::decode(const std::string& path)
 {
-	std::fstream file(file_path.c_str(), std::ios::in | std::ios::out | std::ios::binary);
+	std::fstream file(path, std::ios::in | std::ios::out | std::ios::binary);
 
 	file.seekg(0, std::ios::end);
 

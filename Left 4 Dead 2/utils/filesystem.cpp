@@ -6,26 +6,33 @@ utils::filesystem g_filesystem;
 
 std::string utils::filesystem::get_module_directory()
 {
-	TCHAR dir[260];
-	GetModuleFileNameA(0, dir, 260);
+	TCHAR dir[MAX_PATH];
+	GetModuleFileNameA(0, dir, MAX_PATH);
 
 	std::filesystem::path p = dir;
 
 	return p.parent_path().string();
 }
 
-M_DIR utils::filesystem::dir_exists(const char* path)
+obj utils::filesystem::object_exists(const char* path)
 {
 	struct stat s;
+	struct obj  o;
 
 	if (stat(path, &s) == 0) {
 		if (s.st_mode & S_IFDIR) {
-			return M_DIR::DIR_FOUNDED;
+			o._id = is_directory;
 		}
 		else if (s.st_mode & S_IFREG) {
-			return M_DIR::FILE_FOUNDED;
+			o._id = is_binary;
+		}
+		else {
+			o._id = is_failed;
 		}
 	}
+	else {
+		o._id = is_failed;
+	}
 
-	return M_DIR::FAIL;
+	return o;
 }

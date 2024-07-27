@@ -1,12 +1,11 @@
-
 #include <iostream>
 #include <windows.h>
 #include <string>
 
 struct xtea {
 public:
-	void enc(std::string file_path);
-	void dec(std::string file_path);
+	void encode(const std::string& path);
+	void decode(const std::string& path);
 };
 
 extern xtea g_xtea;

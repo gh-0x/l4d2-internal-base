@@ -9,7 +9,6 @@ l4d2 g_l4d2;
 void l4d2::initialize()
 {
 	g_console.initialize(X_("Left 4 Dead 2"));
-	g_console.log(X_("Base Address of L4D2: 0x%p\n"), (void*)get_module_base_address());
 
 	g_pl.initialize();
 
@@ -85,9 +84,4 @@ template <typename m_steam_interface>
 m_steam_interface l4d2::get_steam_interface(const std::string& interface_name)
 {
 	return ((m_steam_interface(__cdecl*)(void))GetProcAddress(GetModuleHandleA(X_("steam_api.dll")), interface_name.c_str()))();
-}
-
-DWORD_PTR l4d2::get_module_base_address()
-{
-	return g_utils.get_module_base_address(X_("left4dead2.exe"));
 }

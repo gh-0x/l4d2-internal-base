@@ -13,9 +13,10 @@ vars g_var;
 
 void config::initialize()
 {
-	m_cfg_directory = g_filesystem.get_module_directory() + X_("\\left4dead2-base");
+	m_cfg_directory = g_filesystem.get_module_directory() + X_("\\");
+	m_cfg_directory += X_(CONFIG_DIRNAME);
 
-	if (g_filesystem.dir_exists(m_cfg_directory.c_str()) == M_DIR::FAIL)
+	if (g_filesystem.object_exists(m_cfg_directory.c_str()).as(is_failed))
 		std::filesystem::create_directory(m_cfg_directory.c_str());
 }
 
@@ -27,7 +28,7 @@ void config::load_cfg(const std::string& path)
 	if (!target.is_open())
 		return;
 
-	g_xtea.dec(m_file_directory);
+	g_xtea.decode(m_file_directory);
 
 	Json::Value load;
 
@@ -78,7 +79,7 @@ void config::load_cfg(const std::string& path)
 
 	g_var.m_bunny_hop_var = load[X_("misc")][X_("bunnyhop")].asBool();
 
-	g_xtea.enc(m_file_directory);
+	g_xtea.encode(m_file_directory);
 }
 
 void config::save_cfg(const std::string& path)
@@ -139,5 +140,5 @@ void config::save_cfg(const std::string& path)
 	target << save;
 	target.close();
 
-	g_xtea.enc(m_file_directory);
+	g_xtea.encode(m_file_directory);
 }

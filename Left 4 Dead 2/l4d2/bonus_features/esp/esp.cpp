@@ -14,7 +14,7 @@ static void draw_special_infected(c_base_player* entity);
 
 void esp::run()
 {
-	if (!g_l4d2.m_engine->is_connected() && !g_l4d2.m_engine->is_in_game())
+	if (!g_l4d2.m_engine->is_playing())
 		return;
 
 	if (!g.get_local())

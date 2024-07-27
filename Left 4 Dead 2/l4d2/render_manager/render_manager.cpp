@@ -150,21 +150,21 @@ void render_manager::draw_outlined_rect(int x, int y, int w, int h, unsigned lon
 	draw_rect(x, y, w, h, color);
 }
 
-void render_manager::draw_text(std::string text, int x, int y, ID3DXFont* font, unsigned long color, bool center, bool outline)
+void render_manager::draw_text(const std::string& string, int x, int y, ID3DXFont* font, unsigned long color, bool center, bool outline)
 {
-	auto DrawTextA = [&](std::string _text, int _x, int _y, unsigned long _color) {
+	auto DrawTextA = [&](const std::string& _string, int _x, int _y, unsigned long _color) {
 		RECT r{ _x, _y, _x, _y };
-		font->DrawTextA(NULL, _text.c_str(), -1, &r, DT_NOCLIP, _color);
+		font->DrawTextA(NULL, _string.c_str(), -1, &r, DT_NOCLIP, _color);
 	};
 
 	if (outline) {
-		DrawTextA(text, x - 1, y, D3DCOLOR_RGBA(1, 1, 1, 255));
-		DrawTextA(text, x + 1, y, D3DCOLOR_RGBA(1, 1, 1, 255));
-		DrawTextA(text, x, y - 1, D3DCOLOR_RGBA(1, 1, 1, 255));
-		DrawTextA(text, x, y + 1, D3DCOLOR_RGBA(1, 1, 1, 255));
+		DrawTextA(string, x - 1, y, D3DCOLOR_RGBA(1, 1, 1, 255));
+		DrawTextA(string, x + 1, y, D3DCOLOR_RGBA(1, 1, 1, 255));
+		DrawTextA(string, x, y - 1, D3DCOLOR_RGBA(1, 1, 1, 255));
+		DrawTextA(string, x, y + 1, D3DCOLOR_RGBA(1, 1, 1, 255));
 	}
 
-	DrawTextA(text, center ? x - get_text_width(text, font) / 2 : x, y, color);
+	DrawTextA(string, center ? x - get_text_width(string, font) / 2 : x, y, color);
 }
 
 unsigned long render_manager::create_col(float col[4])
@@ -173,21 +173,21 @@ unsigned long render_manager::create_col(float col[4])
 		g_utils.float_to_rgb(col[2]), g_utils.float_to_rgb(col[3]));
 }
 
-RECT render_manager::get_text_dimensions(std::string text, ID3DXFont* font)
+RECT render_manager::get_text_dimensions(const std::string& string, ID3DXFont* font)
 {
 	RECT r;
-	font->DrawTextA(NULL, text.c_str(), -1, &r, DT_CALCRECT, 0xFFFFFFFF);
+	font->DrawTextA(NULL, string.c_str(), -1, &r, DT_CALCRECT, 0xFFFFFFFF);
 	return r;
 }
 
-int render_manager::get_text_width(std::string text, ID3DXFont* font)
+int render_manager::get_text_width(const std::string& string, ID3DXFont* font)
 {
-	RECT r = get_text_dimensions(text, font);
+	RECT r = get_text_dimensions(string, font);
 	return r.right - r.left;
 }
 
-int render_manager::get_text_height(std::string text, ID3DXFont* font)
+int render_manager::get_text_height(const std::string& string, ID3DXFont* font)
 {
-	RECT r = get_text_dimensions(text, font);
+	RECT r = get_text_dimensions(string, font);
 	return r.bottom - r.top;
 }

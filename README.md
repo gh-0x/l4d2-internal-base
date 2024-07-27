@@ -4,6 +4,9 @@
 - simple config system with XTEA encrypting
 - 13 & more game interfaces
 - weapon / drop icons font from left 4 dead
+## Changes
+- [x] Improve the code
+- [x] Added selection of multiple configurations
 ## Requires
 - Visual Studio
 - Windows SDK

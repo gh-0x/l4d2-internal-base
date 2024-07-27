@@ -11,7 +11,7 @@ void knifebot::run(c_user_cmd* cmd)
 	if (!g_var.m_knifebot_var)
 		return;
 
-	if (!g_l4d2.m_engine->is_connected() && !g_l4d2.m_engine->is_in_game())
+	if (!g_l4d2.m_engine->is_playing())
 		return;
 
 	if (!g.get_local())

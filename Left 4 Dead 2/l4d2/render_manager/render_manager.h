@@ -19,8 +19,8 @@ public:
 
 	struct fonts {
 	public:
-		ID3DXFont*                               m_font = {};
-		ID3DXFont*                               m_icons_font = {};
+		ID3DXFont*                           m_font = {};
+		ID3DXFont*                           m_icons_font = {};
 	};
 public:
 	void initialize(IDirect3DDevice9* device);
@@ -35,13 +35,13 @@ public:
 	void draw_rect(int x, int y, int w, int h, unsigned long color);
 	void draw_filled_rect(int x, int y, int w, int h, unsigned long color);
 	void draw_outlined_rect(int x, int y, int w, int h, unsigned long color);
-	void draw_text(std::string text, int x, int y, ID3DXFont* font, unsigned long color, bool center, bool outline);
+	void draw_text(const std::string& string, int x, int y, ID3DXFont* font, unsigned long color, bool center, bool outline);
 
 	unsigned long create_col(float col[4]);
 
-	RECT get_text_dimensions(std::string text, ID3DXFont* font);
-	int get_text_width(std::string text, ID3DXFont* font);
-	int get_text_height(std::string text, ID3DXFont* font);
+	RECT get_text_dimensions(const std::string& string, ID3DXFont* font);
+	int get_text_width(const std::string& string, ID3DXFont* font);
+	int get_text_height(const std::string& string, ID3DXFont* font);
 };
 
 extern render_manager g_render;

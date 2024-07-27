@@ -41,6 +41,7 @@ public:
 	int m_speed_hack_mode_var;
 	float m_speed_hack_speed_var = 1.0f;
 	bool m_bunny_hop_var;
+	int m_cfg_index;
 };
 
 extern config g_cfg;

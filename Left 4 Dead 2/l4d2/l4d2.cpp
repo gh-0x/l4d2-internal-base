@@ -8,6 +8,8 @@
 #include "input_manager/input_manager.h"
 #include "ui/ui.h"
 
+#include "../utils/utils.h"
+
 void h::initialize(void* instance)
 {
 	g_cfg.initialize();
