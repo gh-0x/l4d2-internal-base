@@ -8,7 +8,6 @@ public:
 	void toggle();
 private:
 	bool               m_opened = {};
-	IDirect3DTexture9* kb_icon = {};
 };
 
 extern ui g_ui;
